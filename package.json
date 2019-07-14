@@ -1,9 +1,9 @@
 {
-  "name": "js-types",
+  "name": "validation-fns",
   "version": "0.0.0",
-  "description": "everything related typing and value verification",
+  "description": "Functions to help with validation against rules and schemes",
   "main": "dist/bundle.js",
-  "repository": "git@github.com:shahabkhalvati/js-types.git",
+  "repository": "git@github.com:shahabkhalvati/validation-fns.git",
   "author": "Shahab Khalvati <contact@shahabkhalvati.com>",
   "license": "MIT",
   "scripts": {

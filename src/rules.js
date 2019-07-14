@@ -1,6 +1,4 @@
-const toolbox = require('handyones')
-console.log(toolbox)
-const { common } = toolbox
+const fns = require('fns')
 const R = require('ramda')
 
 const isString = R.is(String)
@@ -12,7 +10,7 @@ const isBoolean = R.is(Boolean)
 const isNil = R.isNil
 const isNilOrEmpty = R.either(isNil, R.isEmpty)
 
-const evaluateIfIsNumber = common.evaluateIf(isNumber)
+const evaluateIfIsNumber = fns.common.evaluateIf(isNumber)
 const isLessThan = R.flip(evaluateIfIsNumber(R.lt, false))
 const isLessThanOrEqualTo = R.flip(evaluateIfIsNumber(R.lte, false))
 const isGreaterThan = R.flip(evaluateIfIsNumber(R.gt, false))

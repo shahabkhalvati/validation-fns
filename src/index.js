@@ -1,3 +1,5 @@
-export default () => {
-  return `hello world`
+import rules from './rules'
+
+export default {
+  rules
 }

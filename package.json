@@ -2,7 +2,7 @@
   "name": "js-types",
   "version": "0.0.0",
   "description": "everything related typing and value verification",
-  "main": "dist/budle.js",
+  "main": "dist/bundle.js",
   "repository": "git@github.com:shahabkhalvati/js-types.git",
   "author": "Shahab Khalvati <contact@shahabkhalvati.com>",
   "license": "MIT",
@@ -35,5 +35,6 @@
   },
   "dependencies": {
     "ramda": "^0.26.1"
-  }
+  },
+  "peerDependencies": {}
 }

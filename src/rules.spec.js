@@ -1,5 +1,6 @@
-import dev from './dev'
 import rules from './rules'
+// import toolbox from 'js-toolbox'
+// const { dev } = toolbox
 const R = require('ramda')
 
 describe('atomic rules', function () {

@@ -1,4 +1,6 @@
-import common from './common'
+const toolbox = require('handyones')
+console.log(toolbox)
+const { common } = toolbox
 const R = require('ramda')
 
 const isString = R.is(String)

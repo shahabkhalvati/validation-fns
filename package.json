@@ -1,0 +1,39 @@
+{
+  "name": "js-types",
+  "version": "0.0.0",
+  "description": "everything related typing and value verification",
+  "main": "dist/budle.js",
+  "repository": "git@github.com:shahabkhalvati/js-types.git",
+  "author": "Shahab Khalvati <contact@shahabkhalvati.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "watch 'npm run build' src",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "prepublish": "yarn run build",
+    "release": "np"
+  },
+  "standard": {
+    "env": {
+      "jest": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "np": "^5.0.3",
+    "rollup": "^1.16.7",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-delete": "^1.0.0",
+    "rollup-plugin-filesize": "^6.1.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "standard": "^13.0.2",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1"
+  }
+}

@@ -5,7 +5,10 @@ const isString = R.is(String)
 const isEmptyString = R.both(isString, R.isEmpty)
 const isNonEmptyString = R.both(isString, R.complement(R.isEmpty))
 const isNumber = R.is(Number)
-const isObject = R.is(Object)
+const isFunction =
+  (functionToCheck) =>
+    functionToCheck && {}.toString.call(functionToCheck) === '[object Function]'
+const isObject = R.both(R.is(Object), R.complement(isFunction))
 const isBoolean = R.is(Boolean)
 const isNil = R.isNil
 const isNilOrEmpty = R.either(isNil, R.isEmpty)
@@ -39,6 +42,7 @@ export default {
   isOptionalNonEmptyString: isOptional(isNonEmptyString),
   isOptionalNumber: isOptional(isNumber),
   isNumber,
+  isFunction,
   isObject,
   isNil,
   isLessThan,

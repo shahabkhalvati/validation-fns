@@ -1,6 +1,5 @@
-import rules from './rules'
-// import toolbox from 'js-toolbox'
-// const { dev } = toolbox
+import V from './'
+const rules = V.rules
 const R = require('ramda')
 
 describe('atomic rules', function () {
@@ -189,4 +188,53 @@ describe('rule builders', function () {
     expect(rules.anyPass([F, F, F])()).toBe(false)
     expect(rules.anyPass([F, F, T])()).toBe(true)
   })
+
+  test('handles functions', function () {
+    const valueToCheck = function () {}
+
+    expect(rules.isNilOrEmpty(valueToCheck)).toBe(false)
+    expect(rules.isBoolean(valueToCheck)).toBe(false)
+    expect(rules.isOptionalBoolean(valueToCheck)).toBe(false)
+    expect(rules.isString(valueToCheck)).toBe(false)
+    expect(rules.isEmptyString(valueToCheck)).toBe(false)
+    expect(rules.isNonEmptyString(valueToCheck)).toBe(false)
+    expect(rules.isOptionalString(valueToCheck)).toBe(false)
+    expect(rules.isOptionalNonEmptyString(valueToCheck)).toBe(false)
+    expect(rules.isOptionalNumber(valueToCheck)).toBe(false)
+    expect(rules.isNumber(valueToCheck)).toBe(false)
+    expect(rules.isObject(valueToCheck)).toBe(false)
+    expect(rules.isNil(valueToCheck)).toBe(false)
+    expect(rules.isLessThan(10)(valueToCheck)).toBe(false)
+    expect(rules.isLessThanOrEqualTo(10)(valueToCheck)).toBe(false)
+    expect(rules.isGreaterThan(5)(valueToCheck)).toBe(false)
+    expect(rules.isGreaterThanOrEqualTo(5)(valueToCheck)).toBe(false)
+    expect(rules.isInRange(5, 10)(valueToCheck)).toBe(false)
+    expect(rules.isInRangeOrEqualTo(5, 10)(valueToCheck)).toBe(false)
+  })
 })
+
+// describe('Schema', function () {
+//   test('should fail when offered non-object as schema', function () {
+//     expect(() => V.schema()).toThrow()
+//     expect(() => V.schema(null)).toThrow()
+//     expect(() => V.schema(void 0)).toThrow()
+//     expect(() => V.schema('stuff')).toThrow()
+//     expect(() => V.schema(123)).toThrow()
+//     expect(() => V.schema(function () {})).toThrow()
+//   })
+
+//   test('validate object against schema', function () {
+//     const schema = V.schema({
+//       field: rules.isString
+//     })
+
+//     expect(schema.validate({ field: '' })).toBe(true)
+//     expect(schema.validate({ field: 'string value' })).toBe(true)
+//     expect(schema.validate({ field: null })).toBe(false)
+//     expect(schema.validate({ field: void 0 })).toBe(false)
+//     expect(schema.validate({ field: 123 })).toBe(false)
+//     expect(schema.validate({ field: {} })).toBe(false)
+//     expect(schema.validate({ field: new Date() })).toBe(false)
+//     expect(schema.validate({ field: function () { } })).toBe(false)
+//   })
+// })

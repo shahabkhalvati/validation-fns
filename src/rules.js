@@ -28,10 +28,11 @@ const isInRangeOrEqualTo = evaluateIfIsNumber(R.curry(isInRangeOrEqualToLogic), 
 
 const isOptional = (predicate) => R.either(isNil, predicate)
 
+export const isNothingOrPass = isOptional
+export const anyPass = R.anyPass
+export const allPass = R.allPass
+
 export default {
-  isNothingOrPass: isOptional,
-  anyPass: R.anyPass,
-  allPass: R.allPass,
   isNilOrEmpty,
   isBoolean,
   isOptionalBoolean: isOptional(isBoolean),

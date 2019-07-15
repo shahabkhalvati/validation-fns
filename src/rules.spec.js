@@ -1,4 +1,5 @@
-import rules from './rules'
+import V from './'
+const rules = V.rules
 const R = require('ramda')
 
 describe('atomic rules', function () {
@@ -173,19 +174,19 @@ describe('rule builders', function () {
   const F = R.F
 
   test('allPass', function () {
-    expect(rules.allPass([])()).toBe(true)
-    expect(rules.allPass([T])()).toBe(true)
-    expect(rules.allPass([F])()).toBe(false)
-    expect(rules.allPass([T, T, F])()).toBe(false)
-    expect(rules.allPass([T, T, T])()).toBe(true)
+    expect(V.where.allPass([])()).toBe(true)
+    expect(V.where.allPass([T])()).toBe(true)
+    expect(V.where.allPass([F])()).toBe(false)
+    expect(V.where.allPass([T, T, F])()).toBe(false)
+    expect(V.where.allPass([T, T, T])()).toBe(true)
   })
 
   test('anyPass', function () {
-    expect(rules.anyPass([])()).toBe(false)
-    expect(rules.anyPass([T])()).toBe(true)
-    expect(rules.anyPass([F])()).toBe(false)
-    expect(rules.anyPass([F, F, F])()).toBe(false)
-    expect(rules.anyPass([F, F, T])()).toBe(true)
+    expect(V.where.anyPass([])()).toBe(false)
+    expect(V.where.anyPass([T])()).toBe(true)
+    expect(V.where.anyPass([F])()).toBe(false)
+    expect(V.where.anyPass([F, F, F])()).toBe(false)
+    expect(V.where.anyPass([F, F, T])()).toBe(true)
   })
 
   test('handles functions', function () {

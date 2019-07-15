@@ -15,10 +15,7 @@ const schema = (model) => {
         const predForKey = R.pick([schemaKey], model)
         const isPredTrueWithoutData = R.where(predForKey, {})
 
-        if (!isPredTrueWithoutData) {
-          return [...acc, schemaKey]
-        }
-        return acc
+        return isPredTrueWithoutData ? acc : [...acc, schemaKey]
       }, [], schemaKeys)
       return requiredFields
     }

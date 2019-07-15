@@ -46,7 +46,7 @@ describe('Schema', function () {
     expect(model.validate({ redundant: 'string value' })).toBe(false)
   })
 
-  test('can extract required fields', function () {
+  test('can compute required fields', function () {
     const model = schema({
       name: rules.isString,
       middleName: rules.isOptionalString,
@@ -55,8 +55,81 @@ describe('Schema', function () {
     })
     const requiredFields = ['name', 'age']
 
-    const result = model.getRequiredFields()
+    const result = model.requiredFields
     expect(result.length).toBe(requiredFields.length)
     expect(result).toEqual(expect.arrayContaining(requiredFields))
+  })
+
+  test('can extract data from dictionary when all is fine', function () {
+    const data = {
+      name: 'name',
+      lastName: 'lastName',
+      age: 15
+    }
+    const model = schema({
+      name: rules.isString,
+      occupation: rules.isOptionalString
+    })
+
+    const extractedObj = model.from(data)
+    expect(extractedObj).toEqual({ name: 'name' })
+  })
+
+  test('can extract data from dictionary when all is fine and there are no required fields', function () {
+    const data = {
+      name: 'name',
+      lastName: 'lastName',
+      occupation: 'occupation',
+      age: 15
+    }
+    const model = schema({
+      occupation: rules.isOptionalString
+    })
+
+    const extractedObj = model.from(data)
+    expect(extractedObj).toEqual({ occupation: 'occupation' })
+  })
+
+  test('can extract data from dictionary when no provided data is needed', function () {
+    const data = {
+      name: 'name',
+      lastName: 'lastName',
+      age: 15
+    }
+    const model = schema({
+      occupation: rules.isOptionalString
+    })
+
+    const extractedObj = model.from(data)
+    expect(extractedObj).toEqual({})
+  })
+
+  test('return undefined on extraction from dictionary when provided data is invalid', function () {
+    const data = {
+      name: 14,
+      lastName: 'lastName',
+      age: 15
+    }
+    const model = schema({
+      name: rules.isString,
+      occupation: rules.isOptionalString
+    })
+
+    const extractedObj = model.from(data)
+    expect(extractedObj).toBeUndefined()
+  })
+
+  test('return undefined on extraction from dictionary when required field is missing', function () {
+    const data = {
+      lastName: 'lastName',
+      age: 15
+    }
+    const model = schema({
+      name: rules.isString,
+      occupation: rules.isOptionalString
+    })
+
+    const extractedObj = model.from(data)
+    expect(extractedObj).toBeUndefined()
   })
 })

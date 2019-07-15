@@ -1,5 +1,4 @@
-import V from './'
-const rules = V.rules
+import rules from './rules'
 const R = require('ramda')
 
 describe('atomic rules', function () {
@@ -212,29 +211,3 @@ describe('rule builders', function () {
     expect(rules.isInRangeOrEqualTo(5, 10)(valueToCheck)).toBe(false)
   })
 })
-
-// describe('Schema', function () {
-//   test('should fail when offered non-object as schema', function () {
-//     expect(() => V.schema()).toThrow()
-//     expect(() => V.schema(null)).toThrow()
-//     expect(() => V.schema(void 0)).toThrow()
-//     expect(() => V.schema('stuff')).toThrow()
-//     expect(() => V.schema(123)).toThrow()
-//     expect(() => V.schema(function () {})).toThrow()
-//   })
-
-//   test('validate object against schema', function () {
-//     const schema = V.schema({
-//       field: rules.isString
-//     })
-
-//     expect(schema.validate({ field: '' })).toBe(true)
-//     expect(schema.validate({ field: 'string value' })).toBe(true)
-//     expect(schema.validate({ field: null })).toBe(false)
-//     expect(schema.validate({ field: void 0 })).toBe(false)
-//     expect(schema.validate({ field: 123 })).toBe(false)
-//     expect(schema.validate({ field: {} })).toBe(false)
-//     expect(schema.validate({ field: new Date() })).toBe(false)
-//     expect(schema.validate({ field: function () { } })).toBe(false)
-//   })
-// })

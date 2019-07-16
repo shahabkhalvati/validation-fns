@@ -1,13 +1,21 @@
+import fns from 'fns'
 import rules from './rules'
 import * as R from 'ramda'
 // import * as S from 'sanctuary'
 
-const schema = (model) => {
-  if (!rules.isObject(model)) {
+const schema = (rawModel) => {
+  if (!rules.isObject(rawModel)) {
     throw new Error('Schema is not valid.')
   }
 
-  const validate = R.where(model)
+  const model = R.mapObjIndexed(
+    (val, key) =>
+      rules.isObject(val)
+        ? schema(val).validate
+        : val
+  )(rawModel)
+
+  const validate = fns.common.evaluateIfNot(rules.isNil, R.where(model), false)
   const getRequiredFields = () => R.reduce(
     (acc, schemaKey) => {
       const predForKey = R.pick([schemaKey], model)

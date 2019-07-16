@@ -132,4 +132,114 @@ describe('Schema', function () {
     const extractedObj = model.from(data)
     expect(extractedObj).toBeUndefined()
   })
+
+  test('validate nested schema', function () {
+    const validData = {
+      simple: 'simple',
+      nested: {
+        numField: 123,
+        simple: 'simple',
+        nested: {
+          num: 321,
+          sample: 'sample'
+        },
+        simpleField: 'simple field 2'
+      },
+      simpleField: 'simple field'
+    }
+
+    const invalidData = {
+      simple: 'simple',
+      nested: {
+        numField: 123,
+        simple: 432,
+        nested: {
+          num: 321,
+          sample: 'sample'
+        },
+        simpleField: 'simple field 2'
+      },
+      simpleField: 'simple field'
+    }
+
+    const invalidDataInLevel2 = {
+      simple: 'simple',
+      nested: {
+        numField: 123,
+        simple: 'simple',
+        nested: {
+          num: '321',
+          sample: 'sample'
+        },
+        simpleField: 'simple field 2'
+      },
+      simpleField: 'simple field'
+    }
+
+    const model = schema({
+      simple: rules.isString,
+      nested: {
+        numField: rules.isNumber,
+        simple: rules.isString,
+        nested: {
+          num: rules.isNumber,
+          sample: rules.isString
+        },
+        simpleField: rules.isString
+      },
+      simpleField: rules.isString
+    })
+
+    expect(model.validate(validData)).toBe(true)
+    expect(model.validate(invalidData)).toBe(false)
+    expect(model.validate(invalidDataInLevel2)).toBe(false)
+  })
+
+  test('validate nested schema, when obj is missing the nested one', function () {
+    const nestedRootMissing = {
+      simple: 'simple',
+      simpleField: 'simple field'
+    }
+
+    const nestedRootIsEmpty = {
+      simple: 'simple',
+      nested: {},
+      simpleField: 'simple field 2'
+    }
+    const nestedRootIsNull = {
+      simple: 'simple',
+      nested: null,
+      simpleField: 'simple field 2'
+    }
+    const nestedRootIsUndefined = {
+      simple: 'simple',
+      nested: void 0,
+      simpleField: 'simple field 2'
+    }
+    const nestedRootIsSimple = {
+      simple: 'simple',
+      nested: 123,
+      simpleField: 'simple field 2'
+    }
+
+    const model = schema({
+      simple: rules.isString,
+      nested: {
+        numField: rules.isNumber,
+        simple: rules.isString,
+        nested: {
+          num: rules.isNumber,
+          sample: rules.isString
+        },
+        simpleField: rules.isString
+      },
+      simpleField: rules.isString
+    })
+
+    expect(model.validate(nestedRootIsEmpty)).toBe(false)
+    expect(model.validate(nestedRootMissing)).toBe(false)
+    expect(model.validate(nestedRootIsNull)).toBe(false)
+    expect(model.validate(nestedRootIsUndefined)).toBe(false)
+    expect(model.validate(nestedRootIsSimple)).toBe(false)
+  })
 })

@@ -1,5 +1,6 @@
 import rules from './rules'
-const R = require('ramda')
+import * as R from 'ramda'
+// import * as S from 'sanctuary'
 
 const schema = (model) => {
   if (!rules.isObject(model)) {
@@ -12,7 +13,7 @@ const schema = (model) => {
       const predForKey = R.pick([schemaKey], model)
       const isPredTrueWithoutData = R.where(predForKey, {})
 
-      return isPredTrueWithoutData ? acc : [...acc, schemaKey]
+      return isPredTrueWithoutData ? acc : R.append(schemaKey, acc)
     }, [], R.keys(model))
 
   return {

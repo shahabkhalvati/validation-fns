@@ -1,6 +1,3 @@
 language: node_js
 node_js:
   - node
-
-script:
-  - yarn run coverage --coverageReporters=text-lcov | coveralls

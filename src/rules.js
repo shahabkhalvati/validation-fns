@@ -1,4 +1,4 @@
-const fns = require('fns')
+const fns = require('regular-fns')
 const R = require('ramda')
 
 const isString = R.is(String)

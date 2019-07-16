@@ -15,7 +15,7 @@ const plugins = [
   filesize()
 ]
 
-const external = ['ramda', 'fns']
+const external = ['ramda', 'regular-fns']
 
 export default [
   {

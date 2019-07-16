@@ -1,4 +1,4 @@
-import fns from 'fns'
+import fns from 'regular-fns'
 import rules from './rules'
 import * as R from 'ramda'
 // import * as S from 'sanctuary'

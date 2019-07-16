@@ -13,7 +13,8 @@
     "dev": "watch 'npm run build' src",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "prepublish": "yarn run build",
+    "coverage": "yarn run test --coverage",
+    "prepublishOnly": "yarn run build",
     "release": "np"
   },
   "standard": {
@@ -38,7 +39,8 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "regular-fns": "^0.1.0"
   },
   "peerDependencies": {}
 }

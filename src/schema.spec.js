@@ -1,6 +1,6 @@
 import rules from './rules'
 import schema from './schema'
-const R = require('ramda')
+// const R = require('ramda')
 
 describe('Schema', function () {
   test('should fail when offered non-object as schema', function () {

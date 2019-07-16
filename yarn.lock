@@ -5245,6 +5245,13 @@ regjsparser@^0.6.0:
   dependencies:
     jsesc "~0.5.0"
 
+regular-fns@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/regular-fns/-/regular-fns-0.1.0.tgz#344a674d57184318b258f1257351422de17c2256"
+  integrity sha512-CBlW0hdiWmmRcyuCboV6ZSIcdvcKAl3h/ZSR5WhxFKh2xXreCXx5ArHMUAxcoez1antw6YZzgO+NVF0IfV59zw==
+  dependencies:
+    ramda "^0.26.1"
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"

@@ -1,6 +1,6 @@
 {
   "name": "validation-fns",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Functions to help with validation against rules and schemes",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
